@@ -86,7 +86,7 @@ a {
   color: var(--primarylink);
   text-decoration: none;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 a:hover,
@@ -110,6 +110,7 @@ h6 {
 h1,
 h2 {
   line-height: 1.2;
+  font-weight: 500;
 }
 
 h3,
@@ -469,7 +470,7 @@ span.header-avatar img {
 }
 
 .page-banner-subtitle {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .single-post-container .page-banner-subtitle {
@@ -483,7 +484,7 @@ span.header-avatar img {
   border: solid gold 1px;
   border-radius: 6px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /*  -------------------------------- */
