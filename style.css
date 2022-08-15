@@ -1,5 +1,5 @@
 /* 
-Theme Name: myTheme Basic
+Theme Name: myTheme
 Author: Lily Fitz
 Version: 1.0.0
 */
@@ -7,7 +7,7 @@ Version: 1.0.0
 :root {
   /* background */
 
-  --bg: #fff;
+  --bg: #fcfcfc;
   --text: #000;
 
   /* --header-bg: rgb(36, 40, 46); */
@@ -20,9 +20,11 @@ Version: 1.0.0
   --black: #000;
   --primary: rgb(255, 255, 255);
   --accent: rgb(255, 255, 255);
-  --border: rgb(15 23 42/0.12);
-  --primarylink: rgb(131, 0, 218);
-  --primarylinkhover: rgb(131, 0, 218);
+  --border: rgba(34, 37, 46, 0.203);
+  --border-color: #e4e7ec;
+  --primarylink: rgb(0, 120, 232);
+  --primarylinkhover: rgb(0, 200, 255);
+  --green: #00bd61;
 
   /* responsive font sizes */
 
@@ -41,7 +43,7 @@ Version: 1.0.0
   /* display */
 
   --visible: visible;
-  --header-height: 60px;
+  --header-height: 70px;
 }
 
 /* reset default box-sizing */
@@ -84,6 +86,7 @@ a {
   color: var(--primarylink);
   text-decoration: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 a:hover,
@@ -291,7 +294,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding-inline: 2rem;
-  border-bottom: solid black 3px;
+  border-top: solid var(--green) 4px;
+  border-bottom: solid var(--border-color) 1px;
 }
 
 .logo {
@@ -310,7 +314,7 @@ header {
 
 .primary-nav {
   display: flex;
-  padding-right: 2.75rem;
+  padding-right: 4.25rem;
 }
 
 nav ul {
@@ -323,9 +327,13 @@ nav ul {
 }
 
 .primary-nav li:last-of-type {
-  padding: 0.375rem 0.75rem;
+  background: linear-gradient(140deg, var(--green), rgb(0, 192, 121));
+  padding: 0.5rem 0.75rem;
   border-radius: 7px;
-  border: solid 2px black;
+}
+
+.primary-nav li:last-of-type a {
+  color: white;
 }
 
 .primary-nav a {
@@ -336,6 +344,12 @@ nav ul {
 .primary-nav a:hover,
 .primary-nav a:focus {
   color: var(--primarylinkhover);
+}
+
+span.header-avatar img {
+  border-radius: 50%;
+  border: solid var(--border) 1px;
+  margin-top: 4px;
 }
 
 /*  -------------------------------- */
@@ -354,7 +368,7 @@ nav ul {
 
   .primary-nav {
     position: fixed;
-    inset: 0 0 0 30%;
+    inset: 0 0 0 20%;
     opacity: 0;
 
     display: flex;
@@ -363,9 +377,13 @@ nav ul {
     align-items: center;
     gap: 3rem;
 
-    background-color: rgba(36, 40, 46, 0.96);
+    padding-right: 0;
+    border-left: solid var(--border-color) 1px;
+    background-color: rgba(255, 255, 255, 0.98);
     transform: translateX(100%);
     transition: all 0.6s;
+
+    z-index: 9800;
   }
 
   .primary-nav[data-visible='true'] {
@@ -378,10 +396,15 @@ nav ul {
     border: solid white 1px;
   } */
 
-  .menu-toggle span {
-    margin: 0 auto;
+  .mobile-menu-wrapper {
     position: relative;
     top: 1px;
+    right: 4rem;
+    z-index: 9900;
+  }
+
+  .menu-toggle span {
+    margin: 0 auto;
     transition-duration: 0s;
     transition-delay: 0.2s;
     transition: background-color 0.3s;
@@ -401,7 +424,7 @@ nav ul {
   .menu-toggle span:after {
     width: 26px;
     height: 2px;
-    background: var(--primary);
+    background: black;
     border-radius: 4px;
     display: block;
     opacity: 1;
@@ -424,7 +447,7 @@ nav ul {
   .menu-toggle-active span:after {
     margin-top: 0;
     transition-delay: 0, 0.2s;
-    background: var(--primary);
+    background: black;
     transition: 0.3s all;
   }
 
@@ -454,12 +477,13 @@ nav ul {
 }
 
 .about-subtitle {
-  background-color: #fff;
-  border: solid black 2px;
+  background-color: white;
   display: inline-block;
-  padding-inline: 10px;
+  padding: 4px 14px 3px;
+  border: solid gold 1px;
+  border-radius: 6px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 /*  -------------------------------- */
@@ -580,7 +604,7 @@ footer {
   padding: 60px 0;
   color: var(--black);
   background: var(--footer-bg);
-  border-top: solid black 4px;
+  border-top: solid var(--border-color) 1px;
 }
 
 footer a {
@@ -669,7 +693,7 @@ ol.children {
 .search-overlay {
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 9999;
+  z-index: 9500;
   position: fixed;
   inset: 0 0 0 0;
   background-color: rgba(0, 0, 0, 0.88);
@@ -709,6 +733,11 @@ body.admin-bar .search-overlay {
   position: absolute;
   top: 1px;
   right: 0px;
+  padding: 1rem 1.25rem;
+  padding-left: 1.75rem;
+  background-color: #e4e7ec3c;
+  border-left: solid 1px var(--border-color);
+  height: 100%;
 }
 
 .search-overlay__open i {
@@ -717,8 +746,8 @@ body.admin-bar .search-overlay {
 
 .search-overlay__close {
   position: absolute;
-  top: 8px;
-  right: 16px;
+  top: 20px;
+  right: 26px;
   font-size: 2.75rem;
   cursor: pointer;
   transition: all 0.3s;

@@ -10,7 +10,7 @@ function mytheme_styles() {
 
     wp_enqueue_style('theme-style', get_stylesheet_uri(), array('google-fonts'), $version, 'all');
 
-    wp_enqueue_style('theme-sass', get_theme_file_uri('/build/index.css'), null, $version, 'all');
+    //wp_enqueue_style('theme-sass', get_theme_file_uri('/build/style-index.css'), null, $version, 'all');
 
     wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
@@ -33,7 +33,7 @@ function mytheme_scripts() {
 
     wp_enqueue_script('theme-script', get_theme_file_uri('/src/script.js'), array('jquery'), $version, true);
 
-    wp_enqueue_script('theme-src-script', get_theme_file_uri('/build/index.js'), array('jquery'), $version, true);
+    //wp_enqueue_script('theme-src-script', get_theme_file_uri('/build/index.js'), array('jquery'), $version, true);
 
     wp_localize_script('theme-script', 'myThemeData', array(
         'root_url' => get_site_url(),
@@ -260,7 +260,7 @@ add_filter( 'wp_nav_menu_items', 'add_to_nav_menu', 10, 2 );
 function add_to_nav_menu( $nav, $args ) {
 
     $logoutUrl = wp_logout_url(); 
-    $userAvatar = get_avatar(get_current_user_id(), 60);
+    $userAvatar = get_avatar(get_current_user_id(), 50);
     $signUpUrl = esc_url(site_url('/wp-signup.php'));
     $signInUrl = esc_url(site_url('/wp-login.php'));
     $myNotesUrl = esc_url(site_url('/notes'));
@@ -268,10 +268,13 @@ function add_to_nav_menu( $nav, $args ) {
 
     if( is_user_logged_in() AND $args->theme_location == 'primary') {
     
-        $nav .= "<li><a href='$logoutUrl'>Logout</a></li><span>$userAvatar</span>";
+        $nav .= "<li><a href='$logoutUrl'>Logout</a></li><span class='header-avatar'>$userAvatar</span>";
         return $nav;
     } elseif ( ! is_user_logged_in() AND $args->theme_location == 'primary') {
         $nav .= "<li><a href='$signInUrl'>Sign In</a></li><li><a href=' $signUpUrl'>Register</a></li>";
+        return $nav;
+    } else {
+        $nav = $nav;
         return $nav;
     }
 }
