@@ -405,3 +405,7 @@ function custom_rest_info() {
 }
 
 add_action('rest_api_init', 'custom_rest_info');
+
+
+
+
